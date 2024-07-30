@@ -1,0 +1,1 @@
+The myFlix app allow you to get information about movies such as genre, director, short desctioption etc.
