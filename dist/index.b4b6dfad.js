@@ -27241,15 +27241,15 @@ const MainView = ()=>{
     const [movies, setMovies] = (0, _react.useState)([
         {
             id: 1,
-            title: "The Shawshank Redemption",
-            Description: "Drama films are serious presentations or stories with settings or life\u2026",
+            Title: "The Shawshank Redemption",
+            Description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
             Genre: {
                 Name: "Drama",
-                Description: "Drama films are serious presentations or stories with settings or life\u2026"
+                Description: "Drama films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature."
             },
             Director: {
                 Name: "Frank Darabont",
-                Bio: "Frank Arpad Darabont id a Hungarian-American film director, screenwrit\u2026",
+                Bio: "Frank Arpad Darabont id a Hungarian-American film director, screenwriter, and producer.",
                 Birth: "1959",
                 Death: "None"
             },
@@ -27258,35 +27258,37 @@ const MainView = ()=>{
         },
         {
             id: 2,
-            title: "The Shawshank Redemption",
-            Description: "Drama films are serious presentations or stories with settings or life\u2026",
+            Title: "Inception",
+            Description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
             Genre: {
-                Name: "Drama",
-                Description: "Drama films are serious presentations or stories with settings or life\u2026"
+                Name: "Sci-Fi",
+                Description: "Science fiction (Sci-Fi) is a genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science."
             },
             Director: {
-                Name: "Frank Darabont",
-                Bio: "Frank Arpad Darabont id a Hungarian-American film director, screenwrit\u2026",
-                Birth: "1959",
+                Name: "Christopher Nolan",
+                Bio: "Christopher Edward Nolan is a British-American film director, producer, and screenwriter known for his complex storytelling and innovative visual techniques. Born on July 30, 1970, in London, Nolan developed a passion for filmmaking at an early age. His work often explores themes of time, memory, and identity, blending intricate narratives with striking visual effects. Nolan's contributions have earned him numerous accolades, making him one of the most influential and celebrated filmmakers of his generation.",
+                Birth: "1970",
                 Death: "None"
             },
-            Featured: true
+            Featured: true,
+            image: "Inception_poster.jpg"
         },
         {
             id: 3,
-            title: "The Shawshank Redemption",
-            Description: "Drama films are serious presentations or stories with settings or life\u2026",
+            Title: "The Dark Knight",
+            Description: "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
             Genre: {
-                Name: "Drama",
-                Description: "Drama films are serious presentations or stories with settings or life\u2026"
+                Name: "Action",
+                Description: "Action film is a genre in which the protagonist is thrust into a series of events that typically include violence, extended fighting, physical feats, and frantic chases."
             },
             Director: {
-                Name: "Frank Darabont",
-                Bio: "Frank Arpad Darabont id a Hungarian-American film director, screenwrit\u2026",
-                Birth: "1959",
+                Name: "Christopher Nolan",
+                Bio: "Christopher Edward Nolan is a British-American film director, producer, and screenwriter known for his complex storytelling and innovative visual techniques. Born on July 30, 1970, in London, Nolan developed a passion for filmmaking at an early age. His work often explores themes of time, memory, and identity, blending intricate narratives with striking visual effects. Nolan's contributions have earned him numerous accolades, making him one of the most influential and celebrated filmmakers of his generation.",
+                Birth: "1970",
                 Death: "None"
             },
-            Featured: true
+            Featured: true,
+            image: "The_Dark_Knight_poster.jpg"
         }
     ]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
@@ -27295,14 +27297,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 71,
+        lineNumber: 64,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 79,
+        lineNumber: 72,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27313,16 +27315,16 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 85,
+                lineNumber: 78,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 83,
+        lineNumber: 76,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "ibUcAdAI/bH2zhEbnx8k9BgET+s=");
+_s(MainView, "qjHDWr+pPJoRdgsJZ/eXs7BUcuE=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27348,7 +27350,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
         onClick: ()=>{
             onMovieClick(movie);
         },
-        children: movie.title
+        children: movie.Title
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
         lineNumber: 3,
@@ -27558,7 +27560,7 @@ const MovieView = ({ movie, onBackClick })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: [
                     "Title: ",
-                    movie.title
+                    movie.Title
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -27588,7 +27590,7 @@ const MovieView = ({ movie, onBackClick })=>{
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 onClick: onBackClick,
-                children: "Back"
+                children: "Back to the all movies"
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
                 lineNumber: 10,
