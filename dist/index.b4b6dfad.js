@@ -27246,7 +27246,7 @@ const MainView = ()=>{
                 return {
                     id: movie._id,
                     Title: movie.Title,
-                    Image: movie.ImagePath,
+                    ImagePath: movie.ImagePath,
                     Director: movie.Director.Name,
                     Genre: movie.Genre.Name,
                     Description: movie.Description,
@@ -28278,7 +28278,7 @@ const MovieView = ({ movie, onBackClick })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                src: movie.image,
+                src: movie.ImagePath,
                 alt: "",
                 className: "src"
             }, void 0, false, {
