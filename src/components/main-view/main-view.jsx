@@ -29,7 +29,7 @@ export const MainView = () => {
   }, [token]);
 
   const NavBar = () =>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-Honeydew">
       <a className="navbar-brand" href="#">MovieFlix</a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

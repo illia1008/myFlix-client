@@ -27272,7 +27272,7 @@ const MainView = ()=>{
         token
     ]);
     const NavBar = ()=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
-            className: "navbar navbar-expand-lg navbar-light bg-light",
+            className: "navbar navbar-expand-lg navbar-light bg-Honeydew",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
                     className: "navbar-brand",
