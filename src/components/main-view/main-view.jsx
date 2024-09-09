@@ -12,20 +12,25 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   useEffect(() => {
-    fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies")
+    fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies", {
+      headers: {
+        Authorization: "Bearer "+ localStorage.getItem("token")
+      }
+    })
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
+
           return {
             Title: movie.Title,
             Description: movie.Description,
             ImagePath: movie.ImagePath,
-            Director: movie.Directors.Name,
-            Bio: movie.Director.Bio,
-            Genre: movie.Genre.Name,
+            Director: movie.Director.Name,
+             Bio: movie.Director.Bio,
+          Genre: movie.Genre.Name,
           };
         });
 
