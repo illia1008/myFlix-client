@@ -13,7 +13,7 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
 
   useEffect(() => {
     fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies", {
