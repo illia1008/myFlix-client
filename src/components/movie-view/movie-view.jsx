@@ -4,10 +4,31 @@ import { Link } from "react-router-dom";
 import './movie-view.scss';
 
 
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, user}) => {
   const { movieId } = useParams();
   const movie = movies.find((b) => b.id === movieId);
 
+  const add = () => {
+ 
+    fetch(`https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/users/${user.Username}/favoriteMovies/${movieId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+
+      }
+    ).then((response) => {
+      console.log(response);
+      if (response.ok) {
+        alert("Movie added successfully!");
+      } else {
+        alert("Something wrong. Movie was NOT added!");
+      }
+    })
+
+  }
   return (
     <div>
       <div>
@@ -24,6 +45,8 @@ export const MovieView = ({ movies }) => {
       <Link to={`/`}>
         <button className="back-button">Back</button>
       </Link>
+      <button style={{background: "green", color: "white"}} onClick={add}>Add</button>
+      <button style={{background: "red", color: "white"}}>Remove</button>
     </div>
   );
 };
