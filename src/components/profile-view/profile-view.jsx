@@ -9,7 +9,7 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
   const [Username, setUsername] = useState(user.Username);
   const [Password, setPassword] = useState(user.Password);
   const [Email, setEmail] = useState(user.Email);
-  const [Birthday, setBirthday] = useState(user.Birthday);
+  const [Birthday, setBirthday] = useState(new Date(user.Birthday));
 
   const ProfileDelete = () => {
     fetch(`https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/users/${user.Username}`,
@@ -17,7 +17,7 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         },
 
       }
@@ -25,7 +25,6 @@ export const ProfileView = ({ user, token, updatedUser, onLoggedOut }) => {
       console.log(response);
       if (response.ok) {
         console.log("Account deleted successfully!");
-        onLoggedOut();
       } else {
         alert("Something wrong. Account was NOT deleted!");
       }
