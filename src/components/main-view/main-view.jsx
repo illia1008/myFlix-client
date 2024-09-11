@@ -4,6 +4,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -17,7 +18,7 @@ export const MainView = () => {
   useEffect(() => {
     fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies", {
       headers: {
-        Authorization: "Bearer "+ localStorage.getItem("token")
+        Authorization: "Bearer " + localStorage.getItem("token")
       }
     })
       .then((response) => response.json())
@@ -25,18 +26,36 @@ export const MainView = () => {
         const moviesFromApi = data.map((movie) => {
 
           return {
+            id: movie._id,
             Title: movie.Title,
             Description: movie.Description,
             ImagePath: movie.ImagePath,
             Director: movie.Director.Name,
-             Bio: movie.Director.Bio,
-          Genre: movie.Genre.Name,
+            Bio: movie.Director.Bio,
+            Genre: movie.Genre.Name,
           };
         });
 
         setMovies(moviesFromApi);
       });
   }, []);
+
+
+  // const onLoggedIn = (user, token) => {
+  //   setUser(user);
+  //   setToken(token);
+  //   localStorage.setItem("user", JSON.stringify(user));
+  //   localStorage.setItem("token", token);
+  // }
+  const onLoggedOut = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+  }
+  const updatedUser = user => {
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
   return (
     <BrowserRouter>
@@ -94,6 +113,29 @@ export const MainView = () => {
               </>
             }
           />
+
+          <Route
+            path="/users/:Username"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={5}>
+                    <ProfileView
+                      user={user}
+                      // token={token}
+                      updatedUser={updatedUser}
+                      onLoggedOut={onLoggedOut}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+
           <Route
             path="/"
             element={
@@ -115,6 +157,7 @@ export const MainView = () => {
             }
           />
         </Routes>
+
       </Row>
     </BrowserRouter>
   );

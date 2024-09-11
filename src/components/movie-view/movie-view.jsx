@@ -11,7 +11,7 @@ export const MovieView = ({ movies }) => {
   return (
     <div>
       <div>
-        <img className="w-100" src={movie.ImagePath} />
+        <img className="w-100" src={location.href.split("/")[0] + "/" + movie.ImagePath} />
       </div>
       <div>
         <span>Title: </span>
@@ -19,7 +19,7 @@ export const MovieView = ({ movies }) => {
       </div>
       <div>
         <span>Director: </span>
-        <span>{movie.Director.Name}</span>
+        <span>{movie.Director}</span>
       </div>
       <Link to={`/`}>
         <button className="back-button">Back</button>
