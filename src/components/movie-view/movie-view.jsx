@@ -29,6 +29,30 @@ export const MovieView = ({ movies, user}) => {
     })
 
   }
+
+  
+  const remove = () => {
+ 
+    fetch(`https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/users/${user.Username}/favoriteMovies/${movieId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+
+      }
+    ).then((response) => {
+      console.log(response);
+      if (response.ok) {
+        alert("Movie REMOVED successfully!");
+      } else {
+        alert("Something wrong. Movie was NOT REMOVED!");
+      }
+    })
+
+  }
+
   return (
     <div>
       <div>
@@ -46,7 +70,7 @@ export const MovieView = ({ movies, user}) => {
         <button className="back-button">Back</button>
       </Link>
       <button style={{background: "green", color: "white"}} onClick={add}>Add</button>
-      <button style={{background: "red", color: "white"}}>Remove</button>
+      <button style={{background: "red", color: "white"}} onClick={remove}>Remove</button>
     </div>
   );
 };
