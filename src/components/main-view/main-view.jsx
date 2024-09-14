@@ -40,13 +40,6 @@ export const MainView = () => {
       });
   }, []);
 
-
-  // const onLoggedIn = (user, token) => {
-  //   setUser(user);
-  //   setToken(token);
-  //   localStorage.setItem("user", JSON.stringify(user));
-  //   localStorage.setItem("token", token);
-  // }
   const onLoggedOut = () => {
     setUser(null);
     setToken(null);
@@ -156,6 +149,20 @@ export const MainView = () => {
               </>
             }
           />
+
+          <Route
+            path="/users/:Username/favoriteMovies"
+            element={
+              user ? (
+                <Col md={5}>
+                  <Col>The list is empty!</Col>
+                </Col>
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+
         </Routes>
 
       </Row>
