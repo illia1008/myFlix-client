@@ -42182,18 +42182,6 @@ const MovieView = ({ movies, user })=>{
                 lineNumber: 73,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                style: {
-                    background: "blue",
-                    color: "white"
-                },
-                onClick: handleShowFavorites,
-                children: "Show All Favorite Movies"
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 76,
-                columnNumber: 7
-            }, undefined),
             showUserInfo && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {

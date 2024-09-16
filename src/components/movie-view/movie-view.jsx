@@ -72,10 +72,10 @@ export const MovieView = ({ movies, user }) => {
       <button style={{ background: "green", color: "white" }} onClick={add}>Add</button>
       <button style={{ background: "red", color: "white" }} onClick={remove}>Remove</button>
       
-      
+{/*       
       <button style={{ background: "blue", color: "white" }} onClick={handleShowFavorites}>
         Show All Favorite Movies
-      </button>
+      </button> */}
 
       
       {showUserInfo && (
