@@ -21,14 +21,14 @@ export const MovieView = ({ movies, user }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    }).then((response) => {
-      console.log(response);
-      if (response.ok) {
-        alert("Movie added successfully!");
-      } else {
-        alert("Something wrong. Movie was NOT added!");
-      }
-    });
+    }).then((response) => response.json())
+    .then(response=>{
+      console.log(response)
+      localStorage.removeItem("user")
+      localStorage.setItem("user", JSON.stringify(response));
+      if (response) {alert("Movie added")}
+  })
+    .catch(err=>console.error(err));
   };
 
   const remove = () => {
@@ -38,14 +38,14 @@ export const MovieView = ({ movies, user }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    }).then((response) => {
-      console.log(response);
-      if (response.ok) {
-        alert("Movie REMOVED successfully!");
-      } else {
-        alert("Something wrong. Movie was NOT REMOVED!");
-      }
-    });
+    }).then((response) => response.json())
+    .then(response=>{
+      console.log(response)
+      localStorage.removeItem("user")
+      localStorage.setItem("user", JSON.stringify(response));
+      if (response) {alert("Movie removed")}
+  })
+    .catch(err=>console.error(err));
   };
 
   

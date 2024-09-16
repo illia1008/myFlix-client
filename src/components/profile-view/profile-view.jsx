@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import {MovieCard} from  "../movie-card/movie-card";
 
-export const ProfileView = ({ user }) => {
+export const ProfileView = ({ user, movies }) => {
 
 
   const [Username, setUsername] = useState(user.Username);
@@ -159,6 +160,11 @@ export const ProfileView = ({ user }) => {
           <h4>Email: {user.Email}</h4>
           <h4>Birthday: {formattedBirthday}</h4>
         </div>
+       <br/>
+        <h1>Favorite Movies</h1>
+        {
+          movies.filter(n=> JSON.parse(localStorage.getItem("user")).FavoriteMovies.includes(n.id)).map(m=><MovieCard movie={m} />)
+        }
     </Container>
   )
 };

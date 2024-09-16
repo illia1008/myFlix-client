@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 export const MovieCard = ({ movie }) => {
   return (
     <Card>
-      <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
+      <img className="w-100" src={location.href.split("/")[0] + "/" + movie.ImagePath} alt="movie" />
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
