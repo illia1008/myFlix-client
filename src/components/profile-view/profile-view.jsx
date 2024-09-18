@@ -10,20 +10,10 @@ export const ProfileView = ({ user, movies }) => {
   const [Email, setEmail] = useState(user.Email);
   const [Birthday, setBirthday] = useState(new Date(user.Birthday));
 
-  const [showUserInfo, setShowUserInfo] = useState(false); // State to control showing user info
-
-  // Function to handle showing the user info
-  const handleShowFavorites = () => {
-    setShowUserInfo(true);
-  };
 
   // Format the birthday date
   const formattedBirthday = new Date(user.Birthday).toLocaleDateString();
 
-  // Function to get movie details by ID
-  const getMovieDetailsById = (id) => {
-    return movies.find((movie) => movie.id === id);
-  };
 
   const ProfileDelete = () => {
     fetch(`https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/users/${user.Username}`,
@@ -45,7 +35,7 @@ export const ProfileView = ({ user, movies }) => {
     })
   }
 
-  const handleSubmit = (event) => {
+  const ProfileUpdate = (event) => {
     event.preventDefault();
 
     const data = {
@@ -92,7 +82,7 @@ export const ProfileView = ({ user, movies }) => {
         <Col xs={12}>
           <Card>
             <Card.Body>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={ProfileUpdate}>
                 <h2>Update User Information</h2>
                 <Form.Group controlId="createUsername">
                   <Form.Label>Username:</Form.Label>

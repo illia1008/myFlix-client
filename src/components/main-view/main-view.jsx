@@ -16,7 +16,8 @@ export const MainView = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
 
   useEffect(() => {
-    fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies", {
+    if(localStorage.getItem("token")) 
+   { fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token")
       }
@@ -38,6 +39,7 @@ export const MainView = () => {
 
         setMovies(moviesFromApi);
       });
+    }
   }, []);
 
   const onLoggedOut = () => {
@@ -49,7 +51,7 @@ export const MainView = () => {
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
   }
-
+ 
   return (
     <BrowserRouter>
       <NavigationBar
@@ -120,7 +122,6 @@ export const MainView = () => {
                     <ProfileView
                       user={user}
                       movies={movies}
-                      // token={token}
                       updatedUser={updatedUser}
                       onLoggedOut={onLoggedOut}
                     />
