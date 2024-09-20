@@ -14,32 +14,32 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || "");
+  const [filterTerm, setFilterTerm] = useState("");
 
   useEffect(() => {
-    if(localStorage.getItem("token")) 
-   { 
-    fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      }
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const moviesFromApi = data.map((movie) => {
+    if (localStorage.getItem("token")) {
+      fetch("https://myflix-myapp-e7d3dd6fff4f.herokuapp.com/movies", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const moviesFromApi = data.map((movie) => {
 
-          return {
-            id: movie._id,
-            Title: movie.Title,
-            Description: movie.Description,
-            ImagePath: movie.ImagePath,
-            Director: movie.Director.Name,
-            Bio: movie.Director.Bio,
-            Genre: movie.Genre.Name,
-          };
+            return {
+              id: movie._id,
+              Title: movie.Title,
+              Description: movie.Description,
+              ImagePath: movie.ImagePath,
+              Director: movie.Director.Name,
+              Bio: movie.Director.Bio,
+              Genre: movie.Genre.Name,
+            };
+          });
+
+          setMovies(moviesFromApi);
         });
-
-        setMovies(moviesFromApi);
-      });
     }
   }, [localStorage.getItem("token")]);
 
@@ -51,7 +51,11 @@ export const MainView = () => {
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
   }
- 
+
+  const filteredMovies = movies.filter(movie => 
+    movie.Title.toLowerCase().includes(filterTerm.toLowerCase())
+  );
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -132,37 +136,30 @@ export const MainView = () => {
           <Route
             path="/"
             element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={3}>
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))}
-                  </>
-                )}
-              </>
-            }
-          />
-
-          <Route
-            path="/users/:Username/favoriteMovies"
-            element={
-              user ? (
-                <Col md={5}>
-                  <Col>The list is empty!</Col>
-                </Col>
+              !user ? (
+                <Navigate to="/login" replace />
+              ) : movies.length === 0 ? (
+                <Col>The list is empty!</Col>
               ) : (
-                <Navigate to="/login" />
+                <>
+                  <Col md={12} style={{ marginBottom: "1em" }}>
+                    <input
+                      type="text"
+                      placeholder="Search movie title"
+                      value={filterTerm}
+                      onChange={(e) => setFilterTerm(e.target.value)} 
+                      style={{ width: "50%", padding: "1em", fontSize: "1em" }}
+                    />
+                  </Col>
+                  {filteredMovies.map((movie) => (
+                    <Col className="mb-4" key={movie.id} md={3}>
+                      <MovieCard movie={movie} />
+                    </Col>
+                  ))}
+                </>
               )
             }
           />
-
         </Routes>
 
       </Row>
