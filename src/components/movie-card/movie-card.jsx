@@ -7,7 +7,7 @@ export const MovieCard = ({ movie }) => {
   return (
     <Card>
       <Card.Body>
-      <img className="w-100" src={location.href.split("/")[0] + "/" + movie.ImagePath} alt="movie" />
+      <img className="w-100" src={movie.ImagePath} alt={`${movie.Title} poster`} />
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
